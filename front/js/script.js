@@ -3,7 +3,7 @@ const productsSection = document.querySelector("#items")
 function afficherProduits(){
     fetch( "http://localhost:3000/api/products") 
     .then((res) => res.json())
-    .then((data) => { //await async
+    .then((data) => { 
         console.log(data);
         let nombresArticles = data.length
         for (let i = 0; i < nombresArticles; i++){ 

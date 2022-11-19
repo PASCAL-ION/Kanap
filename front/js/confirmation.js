@@ -7,5 +7,6 @@ function getCart(){
 function showOrderId(){
     const cart = getCart()
     orderIdSpan.innerHTML = cart
+    localStorage.clear()
 }
 showOrderId()

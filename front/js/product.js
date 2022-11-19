@@ -33,16 +33,13 @@ function addToCart(product){ /* Ajouter un produit au panier */
     let foundProductByColor = cart.find(p => p.color == product.color)
     if(colorsSelect.value === "" || itemQuantity.value == 0){
         alert("couleur ou quantitée invalide")
-        console.log("couleur ou quantitée invalide");
         return   
     }else if ((foundProductById !== undefined)&&(foundProductByColor !== undefined)){
-        console.log("produit déjà ajouté, quantitée modifiée");
-        alert("produit déjà ajouté, quantitée modifiée")
+        alert("produit déjà ajouté au panier, quantitée modifiée")
         foundProductByColor.quantity = parseInt(itemQuantity.value) + parseInt(foundProductByColor.quantity) 
         saveCart(cart)
     }else {
-        alert("produit ajouté")
-        console.log("produit ajouté");
+        alert("produit ajouté au panier")
         product.quantity = itemQuantity.value
         cart.push(product) 
         saveCart(cart)

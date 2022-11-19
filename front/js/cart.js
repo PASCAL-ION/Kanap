@@ -22,7 +22,6 @@ function getCart (){ // Recupère le tableau tu local storage ayant la clé "car
 function displayInHTML(data){ //afficher les données du local storage
   let cart = getCart()
   for(let j = 0; j < cart.length; j++){
-    console.log(cart[j].id);
     const id = cart[j].id
     const i = data.findIndex((productInData) => productInData._id === id) //dans data on cherche le mm id que celui du produit actuel
       cartItems.innerHTML += 
@@ -135,17 +134,17 @@ const city = form.querySelector("#city")
 const address = form.querySelector("#address")
 const email = form.querySelector("#email")
 
-form.addEventListener("submit", (e) => { //le form s'envoie quand-même alors que des champs sont invalides
-  if(validNameAndCity(lastName)&&validNameAndCity(firstName)&&validNameAndCity(city)&&validAddress(address)&&validEmail(email)){
+form.addEventListener("submit", (e) => { 
+  if(validNameAndCity(lastName) && validNameAndCity(firstName) && validNameAndCity(city) && validAddress(address) && validEmail(email)){
     postForm()
-    console.log("ok");
-  }else{
-    console.log("err");
     e.preventDefault()
+  }else{
+    e.preventDefault()
+    console.log("err");
   }
 })
 
-function postForm (){ // fetch post vers le serveur avec les donnés de la page
+function postForm (){ // fetch vers le serveur avec les donnés de la page
   let cart = getCart()
   let productsArr = []
   for (let product of cart){
@@ -171,9 +170,10 @@ function postForm (){ // fetch post vers le serveur avec les donnés de la page
   })
   .then(response => response.json())
   .then(data => {
-    localStorage.setItem("orderId",  data.orderId)
     window.location.href = 'http://127.0.0.1:5500/front/html/confirmation.html'
+    localStorage.setItem("orderId",  data.orderId)
   })
+  .catch(err => console.log(err))
 }
 
   //Prénom, Nom et ville début.....................
