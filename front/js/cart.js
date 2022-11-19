@@ -21,24 +21,25 @@ function getCart (){ // Recupère le tableau tu local storage ayant la clé "car
 
 function displayInHTML(data){ //afficher les données du local storage
   let cart = getCart()
-  cart.forEach(product => {
-    const id = product.id 
+  for(let j = 0; j < cart.length; j++){
+    console.log(cart[j].id);
+    const id = cart[j].id
     const i = data.findIndex((productInData) => productInData._id === id) //dans data on cherche le mm id que celui du produit actuel
       cartItems.innerHTML += 
-        `<article class="cart__item" data-id="${product.id}" data-color="${product.color}" data-price="${data[i].price}"> <!--On utilise i pour ne selectionner que le produit actuel de la boucle-->
+        `<article class="cart__item" data-id="${cart[j].id}" data-color="${j.color}" data-price="${data[i].price}"> <!--On utilise i pour ne selectionner que le produit actuel de la boucle-->
           <div class="cart__item__img">
-              <img src="${product.img}" alt="Photographie d'un canapé">
+              <img src="${cart[j].img}" alt="Photographie d'un canapé">
           </div>
           <div class="cart__item__content">
               <div class="cart__item__content__description">
-                <h2>${product.name}</h2>
-                <p>${product.color}</p>
-                <p>${data[i].price * product.quantity} €</p>
+                <h2>${cart[j].name}</h2>
+                <p>${cart[j].color}</p>
+                <p>${data[i].price * cart[j].quantity} €</p>
               </div>
             <div class="cart__item__content__settings">
               <div class="cart__item__content__settings__quantity">
                 <p>Qté : </p>
-                <input type="number" class="itemQuantity" name="itemQuantity" min="1" max="100" value="${product.quantity}">
+                <input type="number" class="itemQuantity" name="itemQuantity" min="1" max="100" value="${cart[j].quantity}">
               </div>
               <div class="cart__item__content__settings__delete">
                 <p class="deleteItem">Supprimer</p>
@@ -46,7 +47,7 @@ function displayInHTML(data){ //afficher les données du local storage
             </div>  
           </div>
         </article>`; 
-  })
+  }
 }
 
     
@@ -136,8 +137,8 @@ const email = form.querySelector("#email")
 
 form.addEventListener("submit", (e) => { //le form s'envoie quand-même alors que des champs sont invalides
   if(validNameAndCity(lastName)&&validNameAndCity(firstName)&&validNameAndCity(city)&&validAddress(address)&&validEmail(email)){
-    console.log("ok");
     postForm()
+    console.log("ok");
   }else{
     console.log("err");
     e.preventDefault()
@@ -171,7 +172,7 @@ function postForm (){ // fetch post vers le serveur avec les donnés de la page
   .then(response => response.json())
   .then(data => {
     localStorage.setItem("orderId",  data.orderId)
-    /* window.location.href = 'http://127.0.0.1:5500/front/html/confirmation.html' */
+    window.location.href = 'http://127.0.0.1:5500/front/html/confirmation.html'
   })
 }
 

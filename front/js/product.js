@@ -31,14 +31,17 @@ function addToCart(product){ /* Ajouter un produit au panier */
     let cart = getCart() /* On recup le panier dans le local storage */
     let foundProductById = cart.find(p => p.id == product.id)
     let foundProductByColor = cart.find(p => p.color == product.color)
-    document.querySelector(".item__content__settings__quantity").appendChild(phraseAide)
     if(colorsSelect.value === "" || itemQuantity.value == 0){
+        alert("couleur ou quantitée invalide")
         console.log("couleur ou quantitée invalide");
         return   
     }else if ((foundProductById !== undefined)&&(foundProductByColor !== undefined)){
         console.log("produit déjà ajouté, quantitée modifiée");
+        alert("produit déjà ajouté, quantitée modifiée")
         foundProductByColor.quantity = parseInt(itemQuantity.value) + parseInt(foundProductByColor.quantity) 
+        saveCart(cart)
     }else {
+        alert("produit ajouté")
         console.log("produit ajouté");
         product.quantity = itemQuantity.value
         cart.push(product) 
@@ -53,10 +56,9 @@ async function getProductData (id){
         .then(res => res.json())
 }
 
-function showInHTML () {
+function showInHTML () { // afficher les données sur la page html
     getProductData(productId).then(data => {
         let colors = data.colors
-        
         productPrice.innerHTML = data.price
         productImg.src = data.imageUrl
         productImg.alt = data.altTxt
