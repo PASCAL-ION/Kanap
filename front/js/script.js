@@ -4,7 +4,6 @@ function afficherProduits(){
     fetch( "http://localhost:3000/api/products") 
     .then((res) => res.json())
     .then((data) => { 
-        console.log(data);
         let nombresArticles = data.length
         for (let i = 0; i < nombresArticles; i++){ 
             productsSection.innerHTML += `<a href="./product.html?id=${data[i]._id}">

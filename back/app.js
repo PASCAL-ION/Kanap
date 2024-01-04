@@ -18,8 +18,11 @@ app.use(express.static('images'));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
+const relativePath = 'index.html';
+console.log('Relative Path to index.html:', relativePath);
+
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(relativePath, { root: process.cwd() });
 });
 
 app.use('/api/products', productRoutes);
