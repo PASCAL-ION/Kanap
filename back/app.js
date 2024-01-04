@@ -18,11 +18,10 @@ app.use(express.static('images'));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
-/* app.get('/', (req, res) => {
+app.get('/', (req, res) => {
   res.send(productRoutes);
-}); */
+});
 
-app.use(express.static(__dirname));
 
 app.use('/api/products', productRoutes);
 
