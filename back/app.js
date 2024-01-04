@@ -25,6 +25,13 @@ app.get('/', (req, res) => {
   res.sendFile(relativePath, { root: process.cwd() });
 });
 
+const cartPath = 'cart.html';
+console.log('Relative Path to cart.html:', cartPath);
+
+app.get('/cart.html', (req, res) => {
+  res.sendFile(cartPath, { root: process.cwd() });
+});
+
 app.use('/api/products', productRoutes);
 
 module.exports = app;
