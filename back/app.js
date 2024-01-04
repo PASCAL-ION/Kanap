@@ -18,11 +18,10 @@ app.use(express.static('images'));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
-/* app.get('/', (req, res) => {
-  res.send(productRoutes);
-}); */
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
 
-
-app.use('/', productRoutes);
+app.use('/api/products', productRoutes);
 
 module.exports = app;
