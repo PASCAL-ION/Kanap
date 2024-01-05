@@ -73,7 +73,7 @@ function deleteProduct () { //suppression de produit
 }
     
 async function changeProductQuantity () { //changer la quantité pour les produits
-  let response = await fetch(`http://localhost:3000/api/products/`)
+  let response = await fetch(`/api/products/`)
   let data = await response.json()
   displayInHTML(data)
   const articles = document.querySelectorAll('[data-id]')
@@ -161,7 +161,7 @@ function postForm (){ // fetch vers le serveur avec les donnés de la page
   products: productsArr
   }
 
-  fetch('http://localhost:3000/api/products/order',{
+  fetch('/api/products/order',{
     method: 'POST',
     body: JSON.stringify(body),
     headers: {

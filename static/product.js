@@ -49,7 +49,7 @@ function addToCart(product){ /* Ajouter un produit au panier */
 }
 
 async function getProductData (id){
-    return fetch(`http://localhost:3000/api/products/${id}`) /*On utilise l'id pour ne récuperer que les donées d'un seul objet */
+    return fetch(`/api/products/${id}`) /*On utilise l'id pour ne récuperer que les donées d'un seul objet */
         .then(res => res.json())
 }
 
