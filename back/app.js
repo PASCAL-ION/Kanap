@@ -18,7 +18,7 @@ app.use(express.static('images'));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
-const relativePath = 'index.html';
+/* const relativePath = 'index.html';
 console.log('Relative Path to index.html:', relativePath);
 
 app.get('/', (req, res) => {
@@ -30,7 +30,9 @@ console.log('Relative Path to cart.html:', cartPath);
 
 app.get('/cart.html', (req, res) => {
   res.sendFile(cartPath, { root: process.cwd() });
-});
+}); */
+
+app.use(express.static('static'));
 
 app.use('/api/products', productRoutes);
 
