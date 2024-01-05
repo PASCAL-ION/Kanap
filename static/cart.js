@@ -170,7 +170,7 @@ function postForm (){ // fetch vers le serveur avec les donnés de la page
   })
   .then(response => response.json())
   .then(data => {
-    window.location.href = 'http://127.0.0.1:5500/front/html/confirmation.html'
+    window.location.href = 'confirmation.html'
     localStorage.setItem("orderId",  data.orderId)
   })
   .catch(err => console.log(err))
